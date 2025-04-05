@@ -42,7 +42,7 @@ class BallsEffect:
         self.gx = 0
         self.gy = 1
 
-    def set_solors(self, colors):
+    def set_colors(self, colors):
         self.colors = colors
 
     def set_gravity(self, gx, gy):
@@ -233,3 +233,16 @@ class Camera:
 
         self.cap.release()
         cv2.destroyAllWindows()
+
+
+if __name__ == "__main__":
+    colors = [[n, n, 255] for n in range(0, 255, 10)]
+    ballsEffect = BallsEffect("effect.png")
+    gradientEffect = GradientEffect([[255, 0, 0], [0, 0, 255]])
+    ballsEffect.set_colors(colors)
+    ballsEffect.set_gravity(0, -2)
+    music = Music("lambada.mp3")
+    camera = Camera(music)
+    camera.add_effect(gradientEffect)
+    camera.add_effect(ballsEffect)
+    camera.start()
